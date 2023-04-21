@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Will You Marry Me?</title>
+	<style>
+		.popup {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.5);
+			z-index: 9999;
+			visibility: hidden;
+		}
+
+		.popup.active {
+			visibility: visible;
+		}
+
+		.popup-box {
+			background-color: #fff;
+			border-radius: 10px;
+			padding: 20px;
+			max-width: 500px;
+			max-height: 500px;
+			text-align: center;
+		}
+
+		.popup-box h1 {
+			font-size: 30px;
+			margin-bottom: 20px;
+		}
+
+		.popup-box button {
+			background-color: #ff2e63;
+			color: #fff;
+			border: none;
+			padding: 10px 20px;
+			font-size: 18px;
+			border-radius: 5px;
+			cursor: pointer;
+			margin-right: 10px;
+		}
+
+		.popup-box button:last-of-type {
+			margin-right: 0;
+		}
+
+		.popup-background {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-image: url('https://example.com/romantic-background.jpg');
+			background-size: cover;
+			background-position: center;
+			animation: flower-rain 10s linear infinite;
+			z-index: -1;
+		}
+
+		@keyframes flower-rain {
+			0% {
+				background-position: 0 0;
+			}
+
+			100% {
+				background-position: 0 100%;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="popup" id="popup">
+		<div class="popup-box">
+			<h1>Will you marry me?</h1>
+			<button onclick="repeatQuestion()">No</button>
+			<button onclick="displayThankYou()">Yes</button>
+		</div>
+	</div>
+
+	<div class="popup-background"></div>
+
+	<script>
+		function repeatQuestion() {
+			var question = "Will you marry me?";
+			for (var i = 0; i < 5; i++) {
+				question += " please";
+			}
+			document.querySelector("#popup h1").textContent = question;
+		}
+
+		function displayThankYou() {
+			document.querySelector("#popup h1").textContent = "You make my life beautiful. Thank you!";
+			document.querySelector(".popup-box").innerHTML = "<img src='flower.GIF' alt='flower'>";
+			document.querySelector(".popup-background").classList.add("active");
+		}
+
+		document.querySelector("#popup").classList.add("active");
+	</script>
+</body>
+</html>
